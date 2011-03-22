@@ -1,3 +1,7 @@
+module Server 
+    (serveGame,
+     plainHandler) where
+
 import Data.Bits
 import Network.Socket
 import Network.BSD
