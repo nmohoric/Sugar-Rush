@@ -13,7 +13,7 @@ opengame :: HostName               -- ^ Remote host
          -> String                 -- ^ Client Name
          -> IO GameClientHandle    -- ^ Game handle to use
 opengame hostname port progname =
-   do 
+   withSocketsDo $ do 
       addrinfos <- getAddrInfo Nothing (Just hostname) (Just port)
       let serveraddr = head addrinfos
  
