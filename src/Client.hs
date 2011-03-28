@@ -1,8 +1,9 @@
-import Data.Bits
+module Client (opengame, sayPlayer, GameClientHandle, gcHandle) where
+
+--import Data.Bits
 import Network.Socket
-import Network.BSD
-import Data.List
 import System.IO
+import Control.Monad (forever)
 
 data GameClientHandle =
    GameClientHandle {gcHandle :: Handle,
@@ -21,7 +22,7 @@ opengame hostname port progname =
       setSocketOption sock KeepAlive 1
       connect sock (addrAddress serveraddr)
 
-      h <- socketToHandle sock WriteMode
+      h <- socketToHandle sock ReadWriteMode 
 
       hSetBuffering h (BlockBuffering Nothing)
       
